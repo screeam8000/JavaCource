@@ -1,6 +1,6 @@
 package com.company;
 
-public class Sweets {
+public class Sweet {
 
     String name;
     Float weight, price;

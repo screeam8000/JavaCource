@@ -4,18 +4,23 @@
 //2. Вывод на консоль общей цены
 //3. Вывод на консоль всех сладостей в подарке
 //4. Добавлена реализация добавления конфет в подарок и перерасчет общих параметров
+//5. Добавлено удаление сладостей по одной из списка
 
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class Main {
 
-    public static ArrayList<Sweets> addSweets(ArrayList<Sweets> sweets) {
+    public static HashMap<Integer, Sweet> addSweets(HashMap<Integer, Sweet> sweets) {
 
+        sweets.keySet();
         boolean exitFlag = false;
+        int i = 1;
         while (!exitFlag) {
             System.out.println("Choose the number of the sweet \n" +
                     "1. Marmelad \n" +
@@ -40,7 +45,7 @@ public class Main {
                     System.out.println("Enter name of marmelad\n");
                     Scanner scanner4 = new Scanner(System.in);
                     marmelad.name = scanner4.nextLine();
-                    sweets.add(marmelad);
+                    sweets.put(4+i, marmelad);
                     break;
                 }
                 case 2: {
@@ -58,12 +63,12 @@ public class Main {
                     System.out.println("Enter name of jellyBelly\n");
                     Scanner scanner4 = new Scanner(System.in);
                     jellyBelly.name = scanner4.nextLine();
-                    sweets.add(jellyBelly);
+                    sweets.put(4+i, jellyBelly);
                     break;
                 }
                 case 3: {
                     ChupaChups chupaChups = new ChupaChups();
-                    System.out.println("Do you want with gum(enter true if yes; enter false if not)? \n");
+                    System.out.println("Do you want with gum (enter true if yes; enter false if not)? \n");
                     Scanner scanner1 = new Scanner(System.in);
 //                    TODO add exception handler
                     chupaChups.withGum = scanner1.nextBoolean();
@@ -76,7 +81,7 @@ public class Main {
                     System.out.println("Enter name of chupaChups\n");
                     Scanner scanner4 = new Scanner(System.in);
                     chupaChups.name = scanner4.nextLine();
-                    sweets.add(chupaChups);
+                    sweets.put(4+i, chupaChups);
                     break;
                 }
                 case 4: {
@@ -94,7 +99,7 @@ public class Main {
                     System.out.println("Enter name of chocolate\n");
                     Scanner scanner4 = new Scanner(System.in);
                     chocolate.name = scanner4.nextLine();
-                    sweets.add(chocolate);
+                    sweets.put(4+i, chocolate);
                     break;
                 }
 
@@ -105,12 +110,13 @@ public class Main {
                     exitFlag = true;
                     break;
             }
+            i++;
 
         }
         return sweets;
     }
 
-//    public static Sweets chooseParameters(Sweets sweets) {
+//    public static Sweet chooseParameters(Sweet sweets) {
 //
 //        System.out.println("Enter weight of " + sweets.getClass().getSimpleName().toString());
 //        Scanner scanner = new Scanner(System.in);
@@ -122,6 +128,30 @@ public class Main {
 //        Scanner scanner2 = new Scanner(System.in);
 //        sweets.name = scanner2.nextLine();
 //        return sweets;
+//    }
+
+//    public void goMenu(){
+//
+//        HashMap<Integer, String> menu = new HashMap<>();
+//        menu.put(1, "input price");
+//        menu.put(2, "input weight");
+//
+//        for (Map.Entry m: menu.entrySet()){
+//            System.out.println(m.getKey() + "" + m.getValue());
+//        }
+//        Scanner sc = new Scanner(System.in);
+//        boolean flag = true;
+//        int section = -1;
+//        while (!flag){
+//            int section = sc.nextInt();
+//            if(menu.keySet().contains(section))
+//            {flag = true; break;}
+//        }
+//        int section = sc.nextInt();
+//        String res = sc.next();
+//        HashMap<Integer, String> ret = new HashMap<>();
+//        ret.put(section,res);
+//        return ret;
 //    }
 
     public static void main(String[] args) {
@@ -150,18 +180,25 @@ public class Main {
         chocolate.weight = 0.6f;
         chocolate.percengeOfChocolate = 70;
 
-        Sweets[] sweets = new Sweets[]{marmelad, jellyBelly, chupaChups, chocolate};
+        Sweet[] sweets = new Sweet[]{marmelad, jellyBelly, chupaChups, chocolate};
 
-        ArrayList<Sweets> list = new ArrayList<Sweets>();
-        list.add(marmelad);
-        list.add(jellyBelly);
-        list.add(chupaChups);
-        list.add(chocolate);
+        HashMap<Integer, Sweet> list = new HashMap<Integer, Sweet>();
+        list.put(1, marmelad);
+        list.put(2, jellyBelly);
+        list.put(3, chupaChups);
+        list.put(4, chocolate);
 
-        System.out.println("Do You want to add sweet to present? (Yes/No)\n");
+        System.out.println("Do You want to add sweet to present? (Yes/No)\n" +
+        "If you want to remove sweet from present, please enter any value");
+
         Scanner scanner = new Scanner(System.in);
         if (scanner.nextLine().equals("Yes")) {
             addSweets(list);
+        }
+        System.out.println("Do You want to remove sweet from present? (Yes/No)\n");
+        Scanner scanner1 = new Scanner(System.in);
+        if (scanner1.nextLine().equals("Yes")) {
+            removeSweets(list);
         }
 
 //        System.out.println("All weight = " + getAllWeight(sweets));
@@ -173,63 +210,91 @@ public class Main {
 
     }
 
-    private static float getAllWeight(Sweets[] sweets) {
+    private static HashMap<Integer, Sweet>  removeSweets(HashMap<Integer, Sweet> sweets) {
+
+        boolean flag = false;
+        while (!flag) {
+            System.out.println("Which number of sweet do you want to remove? (ex. '1')\n");
+            for (Map.Entry<Integer, Sweet> currentSweet : sweets.entrySet()) {
+                System.out.println(currentSweet.getKey().toString() + ". " + currentSweet.getValue().name);
+            }
+            Scanner scanner = new Scanner(System.in);
+            Integer input = scanner.nextInt();
+            sweets.remove(input);
+            System.out.println("Do you want quit? (Yes/No)");
+            Scanner scanner1 = new Scanner(System.in);
+            String input1 = scanner1.nextLine();
+            if (input1.equals("Yes")) {
+                flag = true;
+            }
+        }
+
+        for (Map.Entry<Integer, Sweet> currentSweet : sweets.entrySet()) {
+            System.out.println(currentSweet.getKey().toString() + ". " + currentSweet.getValue().name);
+        }
+
+        return sweets;
+    }
+
+    private static float getAllWeightCollection(HashMap<Integer, Sweet> sweets) {
 
         Float allWeight = 0.0f;
 
-        for (Sweets currentSweet : sweets) {
-            allWeight += currentSweet.weight;
+        for (Map.Entry<Integer, Sweet>  currentSweet : sweets.entrySet()) {
+            Sweet sweet = currentSweet.getValue();
+            allWeight += sweet.weight;
         }
         return allWeight;
     }
 
-    private static float getAllPrice(Sweets[] sweets) {
+    private static float getAllPriceCollection(HashMap<Integer, Sweet> sweets) {
 
         Float allPrice = 0.0f;
 
-        for (Sweets currentSweet : sweets) {
-            allPrice += currentSweet.price * currentSweet.weight;
+        for (Map.Entry<Integer, Sweet> currentSweet : sweets.entrySet()) {
+            Sweet sweet = currentSweet.getValue();
+            allPrice += sweet.price * sweet.weight;
         }
         return allPrice;
     }
 
-    private static String getAllNames(Sweets[] sweets) {
+    private static String getAllNamesCollection(HashMap<Integer, Sweet> sweets) {
 
         String allNames = " ";
 
-        for (Sweets currentSweet : sweets) {
-            allNames += currentSweet.name + " ";
+        for (Map.Entry<Integer, Sweet> currentSweet : sweets.entrySet()) {
+            Sweet sweet = currentSweet.getValue();
+            allNames += sweet.name + " ";
         }
         return allNames;
     }
-
-    private static float getAllWeightCollection(ArrayList<Sweets> sweets) {
-
-        Float allWeight = 0.0f;
-
-        for (Sweets currentSweet : sweets) {
-            allWeight += currentSweet.weight;
-        }
-        return allWeight;
-    }
-
-    private static float getAllPriceCollection(ArrayList<Sweets> sweets) {
-
-        Float allPrice = 0.0f;
-
-        for (Sweets currentSweet : sweets) {
-            allPrice += currentSweet.price * currentSweet.weight;
-        }
-        return allPrice;
-    }
-
-    private static String getAllNamesCollection(ArrayList<Sweets> sweets) {
-
-        String allNames = " ";
-
-        for (Sweets currentSweet : sweets) {
-            allNames += currentSweet.name + " ";
-        }
-        return allNames;
-    }
+//    private static float getAllWeight(Sweet[] sweets) {
+//
+//        Float allWeight = 0.0f;
+//
+//        for (Sweet currentSweet : sweets) {
+//            allWeight += currentSweet.weight;
+//        }
+//        return allWeight;
+//    }
+//
+//    private static float getAllPrice(Sweet[] sweets) {
+//
+//        Float allPrice = 0.0f;
+//
+//        for (Sweet currentSweet : sweets) {
+//            allPrice += currentSweet.price * currentSweet.weight;
+//        }
+//        return allPrice;
+//    }
+//
+//    private static String getAllNames(Sweet[] sweets) {
+//
+//        String allNames = " ";
+//
+//        for (Sweet currentSweet : sweets) {
+//            allNames += currentSweet.name + " ";
+//        }
+//        return allNames;
+//    }
 }

@@ -1,6 +1,6 @@
 package com.company;
 
-public class Marmelad extends Sweets {
+public class Marmelad extends Sweet {
 
     String color = "green";
 

@@ -1,6 +1,6 @@
 package com.company;
 
-public class ChupaChups extends Sweets {
+public class ChupaChups extends Sweet {
 
     Boolean withGum;
 

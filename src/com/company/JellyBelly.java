@@ -1,6 +1,6 @@
 package com.company;
 
-public class JellyBelly extends Sweets {
+public class JellyBelly extends Sweet {
 
     String size;
 
