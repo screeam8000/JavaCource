@@ -45,7 +45,7 @@ public class Main {
                     System.out.println("Enter name of marmelad\n");
                     Scanner scanner4 = new Scanner(System.in);
                     marmelad.name = scanner4.nextLine();
-                    sweets.put(4+i, marmelad);
+                    sweets.put(4 + i, marmelad);
                     break;
                 }
                 case 2: {
@@ -63,7 +63,7 @@ public class Main {
                     System.out.println("Enter name of jellyBelly\n");
                     Scanner scanner4 = new Scanner(System.in);
                     jellyBelly.name = scanner4.nextLine();
-                    sweets.put(4+i, jellyBelly);
+                    sweets.put(4 + i, jellyBelly);
                     break;
                 }
                 case 3: {
@@ -81,7 +81,7 @@ public class Main {
                     System.out.println("Enter name of chupaChups\n");
                     Scanner scanner4 = new Scanner(System.in);
                     chupaChups.name = scanner4.nextLine();
-                    sweets.put(4+i, chupaChups);
+                    sweets.put(4 + i, chupaChups);
                     break;
                 }
                 case 4: {
@@ -89,7 +89,7 @@ public class Main {
                     System.out.println("Enter the percent of chocolate: \n");
                     Scanner scanner1 = new Scanner(System.in);
 //                    TODO add exception handler
-                    chocolate.percengeOfChocolate= scanner1.nextInt();
+                    chocolate.percengeOfChocolate = scanner1.nextInt();
                     System.out.println("Enter weight(in kg) of chocolate\n");
                     Scanner scanner2 = new Scanner(System.in);
                     chocolate.weight = scanner2.nextFloat();
@@ -99,7 +99,7 @@ public class Main {
                     System.out.println("Enter name of chocolate\n");
                     Scanner scanner4 = new Scanner(System.in);
                     chocolate.name = scanner4.nextLine();
-                    sweets.put(4+i, chocolate);
+                    sweets.put(4 + i, chocolate);
                     break;
                 }
 
@@ -189,7 +189,7 @@ public class Main {
         list.put(4, chocolate);
 
         System.out.println("Do You want to add sweet to present? (Yes/No)\n" +
-        "If you want to remove sweet from present, please enter any value");
+                "If you want to remove sweet from present, please enter any value");
 
         Scanner scanner = new Scanner(System.in);
         if (scanner.nextLine().equals("Yes")) {
@@ -210,7 +210,7 @@ public class Main {
 
     }
 
-    private static HashMap<Integer, Sweet>  removeSweets(HashMap<Integer, Sweet> sweets) {
+    private static HashMap<Integer, Sweet> removeSweets(HashMap<Integer, Sweet> sweets) {
 
         boolean flag = false;
         while (!flag) {
@@ -240,7 +240,7 @@ public class Main {
 
         Float allWeight = 0.0f;
 
-        for (Map.Entry<Integer, Sweet>  currentSweet : sweets.entrySet()) {
+        for (Map.Entry<Integer, Sweet> currentSweet : sweets.entrySet()) {
             Sweet sweet = currentSweet.getValue();
             allWeight += sweet.weight;
         }
