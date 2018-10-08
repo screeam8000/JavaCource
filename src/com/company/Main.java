@@ -8,10 +8,7 @@
 
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
@@ -297,4 +294,11 @@ public class Main {
 //        }
 //        return allNames;
 //    }
+/////////////////////////////Преобразовать строку в integer
+//    String[]str = "1;2;3".split(";");
+//    List<Integer> i = new ArrayList<>();
+//    for(String val: str){
+//        i.add(Integer.valueOf(val));
+//    }
+
 }
