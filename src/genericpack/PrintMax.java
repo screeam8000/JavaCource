@@ -1,4 +1,4 @@
-package com.company;
+package genericpack;
 
 public class PrintMax {
 

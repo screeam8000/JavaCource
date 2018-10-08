@@ -1,7 +1,7 @@
 package annotation;
 
 
-@ControllerObject(name = "bisk")
+@ControllerObject(name = "bisk",def=14)
 public class Coockies {
 
     @StartObject

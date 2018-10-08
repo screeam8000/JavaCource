@@ -28,10 +28,12 @@ public class Main {
 
 //        System.out.println(a.getClass().getAnnotationsByType(ControllerObject.class));
         Method[] m = a.getClass().getMethods();
+        int i=0;
         for (Method mm: m) {
 
-            System.out.println(mm.getName()+" : " +mm.isAnnotationPresent(StartObject.class));
-            System.out.println(mm.getName()+" : " +mm.isAnnotationPresent(StopObject.class));
+            System.out.println(mm.getName()+ " " + i + " : " +mm.isAnnotationPresent(StartObject.class));
+            System.out.println(mm.getName()+ " " + i + " : " +mm.isAnnotationPresent(StopObject.class));
+            i++;
         }
 
     }

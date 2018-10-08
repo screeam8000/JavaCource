@@ -1,4 +1,4 @@
-package com.company;
+package genericpack;
 
 public class BaseClass {
     public int baseInt;

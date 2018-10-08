@@ -1,4 +1,4 @@
-package com.company;
+package genericpack;
 
 public interface BaseInterface {
     public int interfaceInt = 0;

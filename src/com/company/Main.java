@@ -8,10 +8,122 @@
 
 package com.company;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 
 public class Main {
+
+    public static void main(String[] args) {
+
+        Marmelad marmelad = new Marmelad();
+        marmelad.name = "PinkBubble";
+        marmelad.price = 300.0f;
+        marmelad.weight = 0.1f;
+//        marmelad.color = "red";
+
+        marmelad.getClass().getAnnotation(UnicColor.class).color();//как поменять цвет именно в этом marmelad?
+
+        try {
+            Field field = marmelad.getClass().getDeclaredField("string");
+            field.setAccessible(true);
+            System.out.println((String) field.get(marmelad));
+            //как вытащить здесь же аннотацию с помощью рефлексии?
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        JellyBelly jellyBelly = new JellyBelly();
+        jellyBelly.name = "CandyCrush";
+        jellyBelly.price = 450.0f;
+        jellyBelly.weight = 0.5f;
+        jellyBelly.size = "long";
+
+        ChupaChups chupaChups = new ChupaChups();
+        chupaChups.name = "Worms";
+        chupaChups.price = 150.0f;
+        chupaChups.weight = 0.3f;
+        chupaChups.withGum = true;
+
+        Chocolate chocolate = new Chocolate();
+        chocolate.name = "Babaevsky";
+        chocolate.price = 500.0f;
+        chocolate.weight = 0.6f;
+        chocolate.percengeOfChocolate = 70;
+
+        System.out.println(marmelad.getClass().getAnnotation(UnicColor.class).color());
+        System.out.println(jellyBelly.getClass().getAnnotation(UnicSize.class).size());
+        System.out.println(chupaChups.getClass().getAnnotation(UnicWithGum.class).withGum());
+        System.out.println(chocolate.getClass().getAnnotation(UnicPercentage.class).percengeOfChocolate());
+
+        Sweet[] sweets = new Sweet[]{marmelad, jellyBelly, chupaChups, chocolate};
+
+        HashMap<Integer, Sweet> list = new HashMap<Integer, Sweet>();
+        list.put(1, marmelad);
+        list.put(2, jellyBelly);
+        list.put(3, chupaChups);
+        list.put(4, chocolate);
+
+        System.out.println("Do You want to add sweet to present? (Yes/No)\n" +
+                "If you want to remove sweet from present, please enter any value");
+
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.nextLine().equals("Yes")) {
+            addSweets(list);
+        }
+        System.out.println("Do You want to remove sweet from present? (Yes/No)\n");
+        Scanner scanner1 = new Scanner(System.in);
+        if (scanner1.nextLine().equals("Yes")) {
+            removeSweets(list);
+        }
+
+//        System.out.println("All weight = " + getAllWeight(sweets));
+        System.out.println("All weight collection = " + getAllWeightCollection(list));
+//        System.out.println("All price = " + getAllPrice(sweets));
+        System.out.println("All price collection = " + getAllPriceCollection(list));
+//        System.out.println("Present contains: " + getAllNames(sweets));
+        System.out.println("Present contains: " + getAllNamesCollection(list));
+
+    }
+
+//    public static Sweet chooseParameters(Sweet sweets) {
+//
+//        System.out.println("Enter weight of " + sweets.getClass().getSimpleName().toString());
+//        Scanner scanner = new Scanner(System.in);
+//        sweets.weight = scanner.nextFloat();
+//        System.out.println("Enter price of " + sweets.getClass().getSimpleName().toString());
+//        Scanner scanner1 = new Scanner(System.in);
+//        sweets.price = scanner1.nextFloat();
+//        System.out.println("Enter name of " + sweets.getClass().getSimpleName().toString());
+//        Scanner scanner2 = new Scanner(System.in);
+//        sweets.name = scanner2.nextLine();
+//        return sweets;
+//    }
+
+//    public void goMenu(){
+//
+//        HashMap<Integer, String> menu = new HashMap<>();
+//        menu.put(1, "input price");
+//        menu.put(2, "input weight");
+//
+//        for (Map.Entry m: menu.entrySet()){
+//            System.out.println(m.getKey() + "" + m.getValue());
+//        }
+//        Scanner sc = new Scanner(System.in);
+//        boolean flag = true;
+//        int section = -1;
+//        while (!flag){
+//            int section = sc.nextInt();
+//            if(menu.keySet().contains(section))
+//            {flag = true; break;}
+//        }
+//        int section = sc.nextInt();
+//        String res = sc.next();
+//        HashMap<Integer, String> ret = new HashMap<>();
+//        ret.put(section,res);
+//        return ret;
+//    }
+
 
     public static HashMap<Integer, Sweet> addSweets(HashMap<Integer, Sweet> sweets) {
 
@@ -111,100 +223,6 @@ public class Main {
 
         }
         return sweets;
-    }
-
-//    public static Sweet chooseParameters(Sweet sweets) {
-//
-//        System.out.println("Enter weight of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner = new Scanner(System.in);
-//        sweets.weight = scanner.nextFloat();
-//        System.out.println("Enter price of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner1 = new Scanner(System.in);
-//        sweets.price = scanner1.nextFloat();
-//        System.out.println("Enter name of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner2 = new Scanner(System.in);
-//        sweets.name = scanner2.nextLine();
-//        return sweets;
-//    }
-
-//    public void goMenu(){
-//
-//        HashMap<Integer, String> menu = new HashMap<>();
-//        menu.put(1, "input price");
-//        menu.put(2, "input weight");
-//
-//        for (Map.Entry m: menu.entrySet()){
-//            System.out.println(m.getKey() + "" + m.getValue());
-//        }
-//        Scanner sc = new Scanner(System.in);
-//        boolean flag = true;
-//        int section = -1;
-//        while (!flag){
-//            int section = sc.nextInt();
-//            if(menu.keySet().contains(section))
-//            {flag = true; break;}
-//        }
-//        int section = sc.nextInt();
-//        String res = sc.next();
-//        HashMap<Integer, String> ret = new HashMap<>();
-//        ret.put(section,res);
-//        return ret;
-//    }
-
-    public static void main(String[] args) {
-
-        Marmelad marmelad = new Marmelad();
-        marmelad.name = "PinkBubble";
-        marmelad.price = 300.0f;
-        marmelad.weight = 0.1f;
-        marmelad.color = "red";
-
-        JellyBelly jellyBelly = new JellyBelly();
-        jellyBelly.name = "CandyCrush";
-        jellyBelly.price = 450.0f;
-        jellyBelly.weight = 0.5f;
-        jellyBelly.size = "long";
-
-        ChupaChups chupaChups = new ChupaChups();
-        chupaChups.name = "Worms";
-        chupaChups.price = 150.0f;
-        chupaChups.weight = 0.3f;
-        chupaChups.withGum = true;
-
-        Chocolate chocolate = new Chocolate();
-        chocolate.name = "Babaevsky";
-        chocolate.price = 500.0f;
-        chocolate.weight = 0.6f;
-        chocolate.percengeOfChocolate = 70;
-
-        Sweet[] sweets = new Sweet[]{marmelad, jellyBelly, chupaChups, chocolate};
-
-        HashMap<Integer, Sweet> list = new HashMap<Integer, Sweet>();
-        list.put(1, marmelad);
-        list.put(2, jellyBelly);
-        list.put(3, chupaChups);
-        list.put(4, chocolate);
-
-        System.out.println("Do You want to add sweet to present? (Yes/No)\n" +
-                "If you want to remove sweet from present, please enter any value");
-
-        Scanner scanner = new Scanner(System.in);
-        if (scanner.nextLine().equals("Yes")) {
-            addSweets(list);
-        }
-        System.out.println("Do You want to remove sweet from present? (Yes/No)\n");
-        Scanner scanner1 = new Scanner(System.in);
-        if (scanner1.nextLine().equals("Yes")) {
-            removeSweets(list);
-        }
-
-//        System.out.println("All weight = " + getAllWeight(sweets));
-        System.out.println("All weight collection = " + getAllWeightCollection(list));
-//        System.out.println("All price = " + getAllPrice(sweets));
-        System.out.println("All price collection = " + getAllPriceCollection(list));
-//        System.out.println("Present contains: " + getAllNames(sweets));
-        System.out.println("Present contains: " + getAllNamesCollection(list));
-
     }
 
     private static HashMap<Integer, Sweet> removeSweets(HashMap<Integer, Sweet> sweets) {

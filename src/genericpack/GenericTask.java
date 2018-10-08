@@ -5,7 +5,7 @@
 //Добавить метод возвращаемый максимальное значение из массива
 //вне зависимости что в нем хранится ( int или double)
 
-package com.company;
+package genericpack;
 
 import java.util.Arrays;
 

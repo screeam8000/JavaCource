@@ -1,4 +1,7 @@
-package com.company;
+package genericpack;
+
+import genericpack.BaseClass;
+import genericpack.BaseInterface;
 
 public class ConcreteClass extends BaseClass implements BaseInterface {
     public int publicInt;
@@ -14,7 +17,7 @@ public class ConcreteClass extends BaseClass implements BaseInterface {
     @Override
     public void method1() {
         System.out.println("Method1 impl .");
-//        Class aClass = Class.forName("com.company.ConcreteClass").getSuperclass();
+//        Class aClass = Class.forName("genericpack.ConcreteClass").getSuperclass();
         Class aClass = super.getClass();
     }
 
