@@ -5,18 +5,64 @@
 //3. Вывод на консоль всех сладостей в подарке
 //4. Добавлена реализация добавления конфет в подарок и перерасчет общих параметров
 //5. Добавлено удаление сладостей по одной из списка
+//6. Добавлены аннотации к сладостям и вывод в консоль с помощью аннотаций
 
 package com.company;
 
+
 import java.lang.reflect.Field;
 import java.util.*;
-
+import java.util.stream.Collectors;
 
 public class Main {
 
+    interface SweetFactory<S extends Sweet> {
+        S create(String name, Float weight, Float price);
+    }
+
+    interface MarmeladFactory<M extends Marmelad> {
+        M create(String color, String string, String name);
+    }
+
+    interface ChocolateFactory<C extends Chocolate> {
+        C create(Integer percengeOfChocolate, String name, Float price);
+    }
+
     public static void main(String[] args) {
 
+        SweetFactory<Sweet> sweetSweetFactory = Sweet::new;
+        MarmeladFactory<Marmelad> marmeladMarmeladFactory = Marmelad::new;
+        ChocolateFactory<Chocolate> chocolateChocolateFactory = Chocolate::new;
+
+
+        List<Sweet> list1 = new ArrayList<>();
+        list1.add(sweetSweetFactory.create("LollyPop", 30f, 450f));
+        list1.add(chocolateChocolateFactory.create(40, "Milky", 500f));
+        list1.add(chocolateChocolateFactory.create(20, "Wilky", 100f));
+        list1.add(chocolateChocolateFactory.create(60, "Vilky", 200f));
+        list1.add(chocolateChocolateFactory.create(90, "Pilky", 900f));
+        list1.add(marmeladMarmeladFactory.create("Orange", "something", "Sun"));
+        list1.add(marmeladMarmeladFactory.create("Purple", "something", "Plum"));
+        list1.add(marmeladMarmeladFactory.create("Aqua", "something", "River"));
+        list1.add(marmeladMarmeladFactory.create("White", "something", "Snow"));
+
+        //Как выводить уникальные параметры из наследников Sweet?
+
+        Map<String, String> mp = list1.stream().collect(Collectors.toMap(
+                Sweet::getName,
+                o -> o.getName() + " " + o.getPrice() + " " + o.getWeight()
+        ));
+//        list.stream().collect(Collectors.toMap(o -> o.getFirstName() + "aa", Person::getLastName));
+        System.out.println(mp);
+
+        System.out.println("______________________________\n");
+
+        list1.stream().sorted(Comparator.comparing(Sweet::getName)).forEach(Sweet::print);
+
+        System.out.println(Sweet.class.getPackage().getClass().getClasses());
+
         Marmelad marmelad = new Marmelad();
+//        marmelad.setName("PinkBubble");
         marmelad.name = "PinkBubble";
         marmelad.price = 300.0f;
         marmelad.weight = 0.1f;
@@ -29,15 +75,16 @@ public class Main {
             field.setAccessible(true);
             System.out.println((String) field.get(marmelad));
             //как вытащить здесь же аннотацию с помощью рефлексии?
+            //С помощью setter. В цикле найти метод который обратится к параметру и сделать его доступным. :/
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        JellyBelly jellyBelly = new JellyBelly();
+        JellyBelly jellyBelly = new JellyBelly("long");
         jellyBelly.name = "CandyCrush";
         jellyBelly.price = 450.0f;
         jellyBelly.weight = 0.5f;
-        jellyBelly.size = "long";
+//        jellyBelly.size = "long";
 
         ChupaChups chupaChups = new ChupaChups();
         chupaChups.name = "Worms";
@@ -85,43 +132,43 @@ public class Main {
         System.out.println("Present contains: " + getAllNamesCollection(list));
 
     }
-
+    //        return sweets;
+    //        sweets.name = scanner2.nextLine();
+    //        Scanner scanner2 = new Scanner(System.in);
+    //        System.out.println("Enter name of " + sweets.getClass().getSimpleName().toString());
+    //        sweets.price = scanner1.nextFloat();
+    //        Scanner scanner1 = new Scanner(System.in);
+    //        System.out.println("Enter price of " + sweets.getClass().getSimpleName().toString());
+    //        sweets.weight = scanner.nextFloat();
+    //        Scanner scanner = new Scanner(System.in);
+    //        System.out.println("Enter weight of " + sweets.getClass().getSimpleName().toString());
+    //
 //    public static Sweet chooseParameters(Sweet sweets) {
-//
-//        System.out.println("Enter weight of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner = new Scanner(System.in);
-//        sweets.weight = scanner.nextFloat();
-//        System.out.println("Enter price of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner1 = new Scanner(System.in);
-//        sweets.price = scanner1.nextFloat();
-//        System.out.println("Enter name of " + sweets.getClass().getSimpleName().toString());
-//        Scanner scanner2 = new Scanner(System.in);
-//        sweets.name = scanner2.nextLine();
-//        return sweets;
-//    }
 
+//    }
+    //        return ret;
+    //        ret.put(section,res);
+    //        HashMap<Integer, String> ret = new HashMap<>();
+    //        String res = sc.next();
+    //        int section = sc.nextInt();
+    //        }
+    //            {flag = true; break;}
+    //            if(menu.keySet().contains(section))
+    //            int section = sc.nextInt();
+    //        while (!flag){
+    //        int section = -1;
+    //        boolean flag = true;
+    //        Scanner sc = new Scanner(System.in);
+    //        }
+    //            System.out.println(m.getKey() + "" + m.getValue());
+    //        for (Map.Entry m: menu.entrySet()){
+    //
+    //        menu.put(2, "input weight");
+    //        menu.put(1, "input price");
+    //        HashMap<Integer, String> menu = new HashMap<>();
+    //
 //    public void goMenu(){
-//
-//        HashMap<Integer, String> menu = new HashMap<>();
-//        menu.put(1, "input price");
-//        menu.put(2, "input weight");
-//
-//        for (Map.Entry m: menu.entrySet()){
-//            System.out.println(m.getKey() + "" + m.getValue());
-//        }
-//        Scanner sc = new Scanner(System.in);
-//        boolean flag = true;
-//        int section = -1;
-//        while (!flag){
-//            int section = sc.nextInt();
-//            if(menu.keySet().contains(section))
-//            {flag = true; break;}
-//        }
-//        int section = sc.nextInt();
-//        String res = sc.next();
-//        HashMap<Integer, String> ret = new HashMap<>();
-//        ret.put(section,res);
-//        return ret;
+
 //    }
 
 

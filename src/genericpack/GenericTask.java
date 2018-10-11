@@ -23,6 +23,8 @@ public class GenericTask {
         System.out.println(Arrays.toString(classes));
         System.out.println(aClass);
 
+
+
         String[] stringArray = {"say", "my", "name"};
         Double[] doubleArray = {8.9, 6.3, 0.2, 00.1};
         Integer[] intArray = {25, 987, 2, 21, 897};
