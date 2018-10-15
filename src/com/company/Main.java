@@ -30,6 +30,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         SweetFactory<Sweet> sweetSweetFactory = Sweet::new;
         MarmeladFactory<Marmelad> marmeladMarmeladFactory = Marmelad::new;
         ChocolateFactory<Chocolate> chocolateChocolateFactory = Chocolate::new;
@@ -47,6 +48,9 @@ public class Main {
         list1.add(marmeladMarmeladFactory.create("White", "something", "Snow"));
 
         //Как выводить уникальные параметры из наследников Sweet?
+        //сделать абстрактный класс - переопределить в дочернем классе
+        //через аннотацию написать рефлексию
+        //в каждом дочернем классе переопределить toString()
 
         Map<String, String> mp = list1.stream().collect(Collectors.toMap(
                 Sweet::getName,
@@ -365,5 +369,37 @@ public class Main {
 //    for(String val: str){
 //        i.add(Integer.valueOf(val));
 //    }
+
+    /*
+        List<Sweet> present = new ArrayList<>();
+        present.add(new Chocolate(10));
+        present.add(new Chocolate(10));
+        present.add(new JellyBelly("middle"));
+
+        List<Sweet> comulat = new ArrayList<>();
+
+        Map<String, List<Sweet>> map =
+                present.stream().collect(Collectors.groupingBy(o->(o.getName())));
+
+        map.entrySet().stream().forEach(e->{
+
+            float w=e.getValue().stream().mapToInt(Sweet::getWeight).sum();
+            comulat.add(new Sweet(e.getKey(), 0f, 0f));
+            });
+
+        present.stream().forEach(sweet->{
+
+            if(comulat.stream().noneMatch(f->f.getName().equals(sweet.getName()))){
+//                comulat.stream().anyMatch(f->f.getName().equals(sweet.getName()))
+                        comulat.add(new Sweet(sweet.getName(), 0f , 0f));}
+        });
+
+            present.stream().forEach(sweet -> {
+                comulat.stream().filter(f->f.getName().equals(sweet.getName()))
+                        .forEach(s -> s.getWeight());
+
+            });
+*/
+
 
 }
