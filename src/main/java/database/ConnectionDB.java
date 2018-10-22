@@ -1,3 +1,8 @@
+//Задание:
+//1. Вставить данные в таблицу purchase
+//2. Получить данные из таблицы person и вывести их в консоль
+//3. Реализовать preparestatment. Параметры для запроса читаются из файла
+
 package database;
 
 import parsingfilepack.TextParser;
@@ -21,7 +26,7 @@ public class ConnectionDB {
             Connection connection = DriverManager
                     .getConnection("jdbc:postgresql://s-msk-t-ver-db1:5432/testdb", "trainee", "123456");
 
-            //Simple request
+            //Получение данных из таблицы person
             Statement stmt = connection.createStatement();
 
             ResultSet rs = stmt.executeQuery("select * from person");
@@ -35,7 +40,7 @@ public class ConnectionDB {
             rs.close();
             stmt.close();
 
-            //parameter request
+            //Preparestatment
             String SQL = "select * from person where first_name = ?";
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             pstmt.setString(1, firstName);
@@ -47,7 +52,7 @@ public class ConnectionDB {
             pstmt.close();
 
 
-            //insert
+            //Добавление данных в таблицу purchase
             Statement stmt1 = connection.createStatement();
 
             stmt1.executeQuery(
