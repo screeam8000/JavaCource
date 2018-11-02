@@ -1,0 +1,15 @@
+h2, h3 {
+	color: green;
+}
+
+li {
+	color: red;
+}
+
+li.c1{
+	color: blue;
+}
+	
+tr:nth-child(2n+1)	{
+	background: blue;
+}

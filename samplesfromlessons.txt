@@ -1,0 +1,55 @@
+Xpath:
+1. Пункт меню Ипотека
+
+//a[contains(text(),'Ипотека')]
+
+2. Выбрать все пункты меню
+
+//div[@class='header__bottom']
+
+3. Квартира в Новостройке
+
+//a[contains(text(),'Все ипотечные программы')] -- испольовать subliding
+
+4. Принятие решения по заявке
+
+//h2/span[contains (text(),'2')]
+
+5. Кнопка +  для строки Принятие решения по заявке  
+
+//div[@class='accordion__head-cross']
+
+6. Калькулятор  (Пункт меню на странице Ипотека в новостройке) 
+
+//div[@class='menu-body']//a[contains (text(),'Ипотечный калькулятор')] 
+
+Занятие 02.11
+
+//div[@id='online']//*[text()= 'USD']/parent::div/div[4]
+//div[@id='online']//*[text()= 'EUR']/parent::div/div[4]
+
+//li[contains(text(), 'Годовые отчеты по МСФО')]
+
+ul[@class='map-makers']//li[@class='russia' or 'ukraine' or 'bellorussia']
+
+//ul[@class='menu']//li[text()='Новости и акции']
+//ul[@id='slider']/li[last()]
+
+//*[@id='partner-catalog']//li[@class='li']
+
+//li[@class='region']/span
+
+//div[@class='conditions__desc']/p[contains(text(), '129090, Москва, ул. Троицкая, д. 17, стр. 1')]
+//div[@class='conditions__desc']/p[contains(text(), '129090, Москва, ул. Троицкая, д. 17, стр. 1')]
+//h3[contains(text(),'Юридический адрес')]
+//h3[contains(text(),'ИНН')]/ancestor::div[@class='conditions__row']//div[@class='conditions__desc']/p
+//h3[contains(text(),'БИК')]/ancestor::div[@class='conditions__row']//div[@class='conditions__desc']/p
+
+//*[text()='Информационные технологии']/div[@class='vacancies__title-text']/ancestor::div[@class='vacancies']
+//*[text()='Ваше имя']
+//div[@id='tabnews_newsc']//ol[@class='list news__list']/li[@class='list__item  list__item_icon']|or//ol[@class='list news__list news__animation-list']/li[contains(@class,'fade_in')]
+//div[@id='tabnews_newsc']//ol[@class='list news__list']/li[@class='list__item  list__item_icon']|//div[@id='tabnews_newsc']//ol[@class='list news__list news__animation-list']/li[contains(@class,'fade_in')]
+
+
+
+
