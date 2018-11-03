@@ -1,0 +1,23 @@
+h2, h3 {
+	color: blue;
+}
+
+ul {
+	color: red;
+}
+
+ol {
+	color: green;
+}
+
+li.c1{
+	color: fuchsia;
+}
+	
+th  {
+	background: grey;
+}
+
+tr:nth-child(2n)	{
+	background: silver;
+}

@@ -1,0 +1,140 @@
+ДЗ 31.10
+
+Страница: https://www.raiffeisen.ru/
+
+//li/a[contains(text(), 'Карты')]
+//a/span[contains(text(),'Интернет-Банк')]
+//div[@class='informer__btn js-region-check-yes']
+
+Страница: https://www.raiffeisen.ru/
+
+//div[@class='currency-ibank currency-block__container']//h6[contains(text(), 'Покупка')]/following::h2[2]
+//li/a[contains(text(), 'Качество обслуживания')]
+
+
+Страница: https://www.raiffeisen.ru/retail/cards/debit/new/request_auth/?card=CS0200-1411
+
+[sys_name='surname']
+[sys_name='name']
+[sys_name='patronymic']
+[sys_name='birth_date']
+[sys_name='disclaimer'] + span
+.b-block-row__item.b-block-row__item--submit>button
+
+Страница: https://www.raiffeisen.ru/retail/consumerloans/calculator/
+
+//h1[contains(text(),'Кредитный калькулятор')]
+.b-page-heading__title>h1
+[value='credit_amount'] + span
+[value='income'] + span
+[sys_name='income']
+[value='no'] + span
+.b-calc-result__month-price.main-payment > span
+//div[contains(text(),'Ежемесячный платеж')]/following::div[1]
+//div[contains(text(),'Cумма выплат по процентам')]/following::div[1]
+
+ДЗ 6.11
+
+Страница: https://www.raiffeisen.ru/
+
+1.  пункт меню - Карты 
+
+//li/a[contains(text(), 'Карты')]
+
+2.  все пункты верхнего меню – (Для жизни, малому бизнесу)
+
+//ul[@class='sec-menu']/li/a
+.sec-menu>li>a
+
+3.  Валютно - обменные операции, кнопка - Подробнее (Корпоративному бизнесу )
+Страница: https://www.raiffeisen.ru/corporate/
+
+//h2[@class='slider-small__item__title' and contains(text(), 'Валютно-обменные операции')]/ancestor::div[1]/following::div[1]
+
+4.   Малый бизнес - Подробнее(На главной странице)
+
+//h2[@class='slider-small__item__title' and contains(text(), 'Малый бизнес')]/ancestor::div[1]/following::div[1]
+
+Страница: https://www.raiffeisen.ru/retail/mortgageloans/refinansirovanie-kreditov-inyh-bankov/
+
+5.  Рефинансирование Ипотеки - Консультация и подача заявки - Оставить заявку  
+
+//div[@class='b-block-text__content']/a[contains(text(), 'Оставить заявку')]
+.accordion a.button
+
+6.   значение максимальной суммы
+
+//p[contains(text(),'максимальная сумма')]/preceding::p[1]
+
+7.  Мы позаботимся о вашей ипотеке - Оставить заявку - 
+
+.care__block-buttons>a.button
+
+8.  Одобрение объекта 
+
+//div[@class='accordion__head']/h2/span[contains(text(), '3')]/ancestor::h2[1]
+
+9.  Срок кредитования 
+
+//p[contains(text(),'срок кредитования')]/preceding::p[1]
+
+10.  Требования к заемщику
+
+//li[contains(text(), 'Требования к заемщику')]
+
+
+
+Страница: https://avia.yandex.ru/receipt/7/
+
+1.	Зайти на Яндекс Билеты
+2.	Поле откуда
+
+#from
+
+3.	Найти
+
+[type='submit']>span
+
+4.	Список элементов меню
+
+.offers-tabs_kb__tabs>a
+
+5.	Элемент меню, который выбран в данный момент, без привязки к тексту
+
+.offers-tabs_kb__tab._current
+
+Страница: https://avia.yandex.ru/search/result/?fromId=c213&toId=c10429&when=2018-11-04
+
+На 2-ом скриншоте:
+
+1.	Откуда
+
+[name='from']
+
+2.	Куда
+
+[name='to']
+
+3.	Количество билетов
+
+[name='options']
+
+4.	Кнопка переслать ссылку
+
+.share__icon
+
+5.	Найти все варианты в которых есть авиакомпания S7 Airlines
+
+//span[@class='flight_list__company-names' and contains (text(), 'S7')]/ancestor::tr[1]
+
+6.	Найти значение цены для всех вариантов с S7 Airlines
+
+//span[@class='flight_list__company-names' and contains (text(), 'S7')]/ancestor::td[1]/following::td[5]//span[@class='price_kb _init']
+
+//span[@class='flight_list__company-names' and contains (text(), 'S7')]/ancestor::td[1]/following::td[@class='flight_list__buy'][1]//span[@class='price_kb _init']
+
+7.	Найти значения кнопки купить для всех вариантов S7 Airlines
+
+//span[@class='flight_list__company-names' and contains (text(), 'S7')]/ancestor::td[1]/following::td[5]//span[@class='y-button__text']
+
+//span[@class='flight_list__company-names' and contains (text(), 'S7')]/ancestor::td[1]/following::td[@class='flight_list__buy'][1]//span[@class='y-button__text']
